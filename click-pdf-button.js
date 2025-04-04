@@ -16,8 +16,12 @@ class ClickPdfButton {
     const button = document.querySelectorAll('button');
     if (button) { 
       yield getState(ctx, `clicking view white paper button at ${document.URL}`);
-      WebForm_SimulateClick(document.querySelector('button'), {});
-      await sleep(waitUnit * 2);
+
+      // a simple button.click doesn't seem to work, but there is a custom
+      // function in the page for simulating clicks.
+      await WebForm_SimulateClick(document.querySelector('button'), {});
+
+      await sleep(waitUnit * 4);
     }
   }
 }
