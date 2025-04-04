@@ -1,0 +1,23 @@
+class ClickPdfButton {
+  static id = 'ClickPdfDownload';
+
+  static isMatch() {
+    // run on every page
+    return true;
+  }
+
+  static init() {
+    return {}
+  }
+
+  async* run(ctx) {
+    const { getState, sleep, waitUnit } = ctx.Lib;
+
+    const button = document.querySelectorAll('button');
+    if (button) { 
+      yield getState(ctx, `clicking view white paper button at ${document.URL}`);
+      WebForm_SimulateClick(document.querySelector('button'), {});
+      await sleep(waitUnit * 2);
+    }
+  }
+}
